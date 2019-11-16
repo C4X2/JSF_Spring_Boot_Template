@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" 
+   "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+ 
+<bean id = "msg" class="com.emerald.comic.beans.impl.MessageRegistryBean">
+	<description>
+		This is a bean to fetch all of the values to be displayed on the UI.
+	</description>
+</bean>
+<!-- <alias name="msg" alias="msg"/> -->

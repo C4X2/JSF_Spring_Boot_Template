@@ -1,0 +1,52 @@
+plugins {
+	id 'org.springframework.boot' version '2.2.0.RELEASE'
+	id 'io.spring.dependency-management' version '1.0.8.RELEASE'
+	id 'java'
+	id 'war'
+}
+
+group = 'com.emerald'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+repositories {
+	mavenCentral()
+	//Needed so gradle can find PrimeFaces
+	maven {
+		url "http://repository.primefaces.org"
+	}
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.1.1'
+	runtimeOnly 'mysql:mysql-connector-java'
+	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
+	testImplementation('org.springframework.boot:spring-boot-starter-test') {
+		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+	}
+	
+
+	/* Normally you would declare the javax.servlet instance here directly. But since we
+	* extend the SpringBootServletInitializer class, we have made our own local (opinioned)
+	* instance of javax.servlet. Making this declaration redundant
+	*/
+    //providedCompile 'javax.servlet:servlet-api:2.5'
+	
+	// https://mvnrepository.com/artifact/org.apache.tomcat.embed/tomcat-embed-jasper
+	compile group: 'org.apache.tomcat.embed', name: 'tomcat-embed-jasper', version: '9.0.17'
+	
+    compile group: 'javax.servlet', name: 'jstl', version: '1.2'
+    //These dependencies is used in order to properly configure JSF UI components
+	compile 'com.sun.faces:jsf-api:2.2.5'
+	compile 'com.sun.faces:jsf-impl:2.2.5'
+	
+	//This dependency is a popular implementation of JSF
+	compile 'org.primefaces:primefaces:4.0'
+	compile 'org.primefaces.themes:bootstrap:1.0.10'
+
+}
+
+test {
+	useJUnitPlatform()
+}
